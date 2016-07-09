@@ -1,0 +1,6 @@
+D:\C#\UnitTestsTask\UnitTestsTask\bin\Debug\UnitTestsTask.exe.config
+D:\C#\UnitTestsTask\UnitTestsTask\bin\Debug\UnitTestsTask.exe
+D:\C#\UnitTestsTask\UnitTestsTask\bin\Debug\UnitTestsTask.pdb
+D:\C#\UnitTestsTask\UnitTestsTask\obj\Debug\UnitTestsTask.exe
+D:\C#\UnitTestsTask\UnitTestsTask\obj\Debug\UnitTestsTask.pdb
+D:\C#\UnitTestsTask\UnitTestsTask\obj\Debug\UnitTestsTask.csprojResolveAssemblyReference.cache

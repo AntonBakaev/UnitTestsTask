@@ -1,0 +1,9 @@
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\bin\Debug\UnitTestsTask.UnitTests.dll
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\bin\Debug\UnitTestsTask.UnitTests.pdb
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\bin\Debug\nunit.framework.dll
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\bin\Debug\nunit.framework.xml
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\obj\Debug\UnitTestsTask.UnitTests.csprojResolveAssemblyReference.cache
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\obj\Debug\UnitTestsTask.UnitTests.dll
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\obj\Debug\UnitTestsTask.UnitTests.pdb
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\bin\Debug\UnitTestsTask.exe
+D:\C#\UnitTestsTask\UnitTestsTask.UnitTests\bin\Debug\UnitTestsTask.pdb
