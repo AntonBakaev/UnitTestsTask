@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace UnitTestsTask
 {
@@ -7,29 +8,29 @@ namespace UnitTestsTask
         private static void Main(string[] args)
         {
             Console.WriteLine("Enter your username:");
-            var username = Console.ReadLine();
+            string username = Console.ReadLine();
             Console.WriteLine("Enter your password:");
-            var password = Console.ReadLine();
+            string password = Console.ReadLine();
             if (!VerifyAccess(username, password))
                 Console.WriteLine("Username or password is incorrect!");
             else
             {
                 Console.WriteLine("Enter expression to calculate (eg 6 / 2):");
-                var exp = Console.ReadLine();
-                var num1 = 0;
-                var num2 = 0;
-                var sign = string.Empty;
-                if (!TryGetExpression(exp, out num1, out num2, out sign))
-                {
-                    Console.WriteLine("Expression is incorrect!");
-                    Console.ReadLine();
-                    return;
-                }
+                string exp = Console.ReadLine();
+                int i1, i2;
+                double d1, d2;
+                string sign;
+
                 try
                 {
-                    Console.WriteLine("Result: {0}", Calculate(num1, num2, sign));
+                    if (TryGetIntExpression(exp, out i1, out i2, out sign))
+                        Console.WriteLine("Result: {0}", Calculate(i1, i2, sign));
+                    else if (TryGetDoubleExpression(exp, out d1, out d2, out sign))
+                        Console.WriteLine("Result: {0}", Calculate(d1, d2, sign));
+                    else
+                        Console.WriteLine("Expression is incorrect!");
                 }
-                catch (DivideByZeroException ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -44,15 +45,33 @@ namespace UnitTestsTask
             return permissonResolver.HasAccess(username, password);
         }
 
-        private static bool TryGetExpression(string exp, out int num1, out int num2, out string sign)
+        private static bool TryGetIntExpression(string exp, out int num1, out int num2, out string sign)
         {
             var parts = exp.Trim().Split(' ');
             num1 = 0;
             num2 = 0;
             sign = null;
-            if (parts.Length != 3 || !int.TryParse(parts[0], out num1)
-                || !IsMathSign(parts[1]) || !int.TryParse(parts[2], out num2))
+
+            if (parts.Length != 3 || !Int32.TryParse(parts[0], out num1)
+                || !IsMathSign(parts[1]) || !Int32.TryParse(parts[2], out num2))
                 return false;
+
+            sign = parts[1];
+            return true;
+        }
+
+        private static bool TryGetDoubleExpression(string exp, out double num1, out double num2, out string sign)
+        {
+            char sep = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+            var parts = exp.Replace(sep == '.' ? ',' : '.', sep).Trim().Split(' ');
+            num1 = 0;
+            num2 = 0;
+            sign = null;
+
+            if (parts.Length != 3 || !Double.TryParse(parts[0], out num1)
+                || !IsMathSign(parts[1]) || !Double.TryParse(parts[2], out num2))
+                return false;
+
             sign = parts[1];
             return true;
         }
@@ -62,9 +81,9 @@ namespace UnitTestsTask
             return sign == "+" || sign == "-" || sign == "*" || sign == "/";
         }
 
-        private static int Calculate(int num1, int num2, string sign)
+        private static T Calculate<T>(T num1, T num2, string sign)
         {
-            var calc = new Calculator();
+            ICalculator<T> calc = num1 is int ? (ICalculator<T>)new IntCalculator() : (ICalculator<T>)new DoubleCalculator();
             switch (sign)
             {
                 case "+":

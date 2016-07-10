@@ -4,14 +4,14 @@ using NUnit.Framework;
 namespace UnitTestsTask.UnitTests
 {
     [TestFixture]
-    public class CalculatorTests
+    public class IntCalculatorTests
     {
-        private Calculator calc;
+        private IntCalculator intCalc;
 
         [SetUp]
         public void SetUp()
         {
-            calc = new Calculator();
+            intCalc = new IntCalculator();
         }
 
         [TestCase(4, 7, 11)]
@@ -27,7 +27,7 @@ namespace UnitTestsTask.UnitTests
         [TestCase(0, 0, 0)]
         public void Sum_VariuosInputs_ChecksThem(int num1, int num2, int expected)
         {
-            Assert.AreEqual(expected, calc.Sum(num1, num2));
+            Assert.AreEqual(expected, intCalc.Sum(num1, num2));
         }
 
         [TestCase(7, 4, 3)]
@@ -47,7 +47,7 @@ namespace UnitTestsTask.UnitTests
         [TestCase(0, 0, 0)]
         public void Subtr_VariousInputs_ChecksThem(int num1, int num2, int expected)
         {
-            Assert.AreEqual(expected, calc.Subtr(num1, num2));
+            Assert.AreEqual(expected, intCalc.Subtr(num1, num2));
         }
 
         [TestCase(4, 7, 28)]
@@ -63,7 +63,7 @@ namespace UnitTestsTask.UnitTests
         [TestCase(0, 0, 0)]
         public void Mult_VariousInputs_ChecksThem(int num1, int num2, int expected)
         {
-            Assert.AreEqual(expected, calc.Mult(num1, num2));
+            Assert.AreEqual(expected, intCalc.Mult(num1, num2));
         }
 
         [TestCase(28, 7, 4)]
@@ -78,7 +78,7 @@ namespace UnitTestsTask.UnitTests
         [TestCase(0, -1, 0)]
         public void Div_GoodVariousInputs_ChecksThem(int num1, int num2, int expected)
         {
-            Assert.AreEqual(expected, calc.Div(num1, num2));
+            Assert.AreEqual(expected, intCalc.Div(num1, num2));
         }
 
         [TestCase(72)]
@@ -86,7 +86,7 @@ namespace UnitTestsTask.UnitTests
         [TestCase(0)]
         public void Div_DivideByZeroVariousInputs_ThrowsDivideByZeroException(int num1)
         {
-            Assert.Catch<DivideByZeroException>(() => calc.Div(num1, 0));
+            Assert.Catch<DivideByZeroException>(() => intCalc.Div(num1, 0));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace UnitTestsTask.UnitTests
 {
@@ -10,21 +11,25 @@ namespace UnitTestsTask.UnitTests
         [SetUp]
         public void SetUp()
         {
-            IAccountRepository accountRep = new AccountRepository();
+            var accountRep = new AccountRepository();
+            accountRep.Accounts = new List<Person>();
+            accountRep.Accounts.Add(new Person("Axl", "qwer"));
+            accountRep.Accounts.Add(new Person("Ozzy", "12onetwo"));
+            accountRep.Accounts.Add(new Person("Bon", "password"));
             permissionResolver = new PermissionResolver(accountRep);
         }
 
-        [TestCase("Mike", "password")]
-        [TestCase("Tom", "1234pass")]
-        [TestCase("Max", "123")]
+        [TestCase("Axl", "qwer")]
+        [TestCase("Ozzy", "12onetwo")]
+        [TestCase("Bon", "password")]
         public void HasAccess_GoodVariousInputs_ReturnsTrue(string username, string password)
         {
             Assert.IsTrue(permissionResolver.HasAccess(username, password));
         }
 
         [TestCase("abra", "cadabra")]
-        [TestCase("Tom", "...")]
-        [TestCase("...", "123")]
+        [TestCase("Bon", "...")]
+        [TestCase("...", "qwer")]
         [TestCase("", "")]
         [TestCase(null, null)]
         public void HasAccess_BadVariousInputs_ReturnsFalse(string username, string password)

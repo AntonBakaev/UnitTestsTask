@@ -8,12 +8,18 @@ namespace UnitTestsTask
 
         public AccountRepository()
         {
-            accounts = new List<Person>();
-            accounts.Add(new Person("Mike", "password"));
-            accounts.Add(new Person("Jack", "qwerty"));
-            accounts.Add(new Person("Tom", "1234pass"));
-            accounts.Add(new Person("Jerry", "secretpassword"));
-            accounts.Add(new Person("Max", "123"));
+            Accounts = new List<Person>();
+            Accounts.Add(new Person("Mike", "password"));
+            Accounts.Add(new Person("Jack", "qwerty"));
+            Accounts.Add(new Person("Tom", "1234pass"));
+            Accounts.Add(new Person("Jerry", "secretpassword"));
+            Accounts.Add(new Person("Max", "123"));
+        }
+
+        public List<Person> Accounts
+        {
+            get { return accounts; }
+            set { accounts = value; }
         }
 
         public IEnumerable<Person> GetAccounts()

@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleCalculator.cs" />
     <Compile Include="IAccountRepository.cs" />
+    <Compile Include="ICalculator.cs" />
+    <Compile Include="IntCalculator.cs" />
     <Compile Include="PermissionResolver.cs" />
-    <Compile Include="Calculator.cs" />
     <Compile Include="AccountRepository.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />

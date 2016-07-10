@@ -1,6 +1,6 @@
 ﻿namespace UnitTestsTask
 {
-    public class Calculator
+    public class IntCalculator : ICalculator<int>
     {
         public int Sum(int num1, int num2)
         {
